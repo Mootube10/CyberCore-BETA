@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberFusion Hub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0d0d0d;
+            color: #00ffcc;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+        .section {
+            background: rgba(0, 255, 204, 0.1);
+            border: 1px solid #00ffcc;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+        button {
+            background-color: #00ffcc;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            color: black;
+        }
+        input {
+            padding: 10px;
+            width: 80%;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CyberFusion Hub</h1>
+        <p>Welcome to the future of technology and innovation.</p>
+        
+        <div class="section" id="chatbot">
+            <h2>FusionBot - AI Chat</h2>
+            <p>Ask anything about CyberFusion!</p>
+            <input type="text" id="chatInput" placeholder="Ask a question...">
+            <button onclick="chatResponse()">Send</button>
+            <p id="chatOutput"></p>
+        </div>
+        
+        <div class="section" id="game">
+            <h2>Hacking Mini-Game</h2>
+            <p>Click the button to start hacking the firewall!</p>
+            <button onclick="startGame()">Start</button>
+            <p id="gameStatus"></p>
+        </div>
+        
+        <div class="section" id="projects">
+            <h2>Projects</h2>
+            <p>Explore our cutting-edge developments.</p>
+        </div>
+        
+        <div class="section" id="qa">
+            <h2>Community Q&A</h2>
+            <p>Submit your questions and we'll get back to you!</p>
+            <input type="text" id="question" placeholder="Your question...">
+            <button onclick="submitQuestion()">Submit</button>
+        </div>
+    </div>
+    
+    <script>
+        function chatResponse() {
+            let input = document.getElementById("chatInput").value;
+            if (input.trim() === "") {
+                document.getElementById("chatOutput").innerText = "FusionBot: Please enter a question.";
+                return;
+            }
+            let responses = {
+                "What is CyberFusion?": "CyberFusion is a technology and gaming innovation company.",
+                "Tell me about your projects.": "We work on AI, game development, and financial tools.",
+                "What games are you developing?": "We are working on Neon Nexus, Echo Protocol, and more!"
+            };
+            document.getElementById("chatOutput").innerText = "FusionBot: " + (responses[input] || "I am still learning. Ask another question!");
+        }
+        
+        function startGame() {
+            let challenge = prompt("Enter the correct passcode to bypass the firewall (Hint: 1234)");
+            if (challenge === "1234") {
+                document.getElementById("gameStatus").innerText = "Firewall Bypassed! Access Granted.";
+            } else {
+                document.getElementById("gameStatus").innerText = "Access Denied. Try again.";
+            }
+        }
+        
+        function submitQuestion() {
+            let question = document.getElementById("question").value;
+            if (question.trim() === "") {
+                alert("Please enter a valid question.");
+                return;
+            }
+            alert("Question Submitted: " + question);
+            document.getElementById("question").value = "";
+        }
+    </script>
+</body>
+</html>
