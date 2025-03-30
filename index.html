@@ -72,10 +72,13 @@
     <button onclick="submitQuestion()">Submit</button>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+<!-- Load EmailJS Library -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
 <script>
+    // Initialize EmailJS with your User ID
     (function() {
-        emailjs.init("LnNeySQ7lIbsP2f5C"); // Replace with your EmailJS User ID
+        emailjs.init("LnNeySQ7lIbsP2f5C"); // Replace with your actual EmailJS Public Key
     })();
 
     function submitQuestion() {
@@ -100,6 +103,10 @@
         }, function(error) {
             alert("Error sending question. Please try again later.");
             console.error("EmailJS Error:", error);
+        });
+    }
+</script>
+
         });
     }
 </script>
