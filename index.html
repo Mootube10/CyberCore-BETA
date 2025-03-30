@@ -64,47 +64,45 @@
         </div>
         
         <div class="section" id="qa">
-            <h2>Community Q&A</h2>
-            <p>Submit your questions and we'll get back to you!</p>
-            <input type="text" id="question" placeholder="Your question...">
-            <button onclick="submitQuestion()">Submit</button>
-        </div>
-    </div>
-    
-    <script>
-        function chatResponse() {
-            let input = document.getElementById("chatInput").value;
-            if (input.trim() === "") {
-                document.getElementById("chatOutput").innerText = "FusionBot: Please enter a question.";
-                return;
-            }
-            let responses = {
-                "What is CyberFusion?": "CyberFusion is a technology and gaming innovation company.",
-                "Tell me about your projects.": "We work on AI, game development, and financial tools.",
-                "What games are you developing?": "We are working on Neon Nexus, Echo Protocol, and more!"
-            };
-            document.getElementById("chatOutput").innerText = "FusionBot: " + (responses[input] || "I am still learning. Ask another question!");
+<div class="section" id="qa">
+    <h2>Community Q&A</h2>
+    <p>Submit your questions and we'll get back to you!</p>
+    <input type="email" id="email" placeholder="Your email..." required>
+    <input type="text" id="question" placeholder="Your question..." required>
+    <button onclick="submitQuestion()">Submit</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+<script>
+    (function() {
+        emailjs.init("LnNeySQ7lIbsP2f5C"); // Replace with your EmailJS User ID
+    })();
+
+    function submitQuestion() {
+        let email = document.getElementById("email").value.trim();
+        let question = document.getElementById("question").value.trim();
+
+        if (email === "" || question === "") {
+            alert("Please enter both your email and a question.");
+            return;
         }
-        
-        function startGame() {
-            let challenge = prompt("Enter the correct passcode to bypass the firewall (Hint: 1234)");
-            if (challenge === "1234") {
-                document.getElementById("gameStatus").innerText = "Firewall Bypassed! Access Granted.";
-            } else {
-                document.getElementById("gameStatus").innerText = "Access Denied. Try again.";
-            }
-        }
-        
-        function submitQuestion() {
-            let question = document.getElementById("question").value;
-            if (question.trim() === "") {
-                alert("Please enter a valid question.");
-                return;
-            }
-            alert("Question Submitted: " + question);
+
+        let templateParams = {
+            user_email: email,
+            user_question: question
+        };
+
+        emailjs.send("service_agni4om", "template_ipcvm4t", templateParams)
+        .then(function(response) {
+            alert("Question Submitted! We'll get back to you soon.");
+            document.getElementById("email").value = "";
             document.getElementById("question").value = "";
-        }
-    </script>
+        }, function(error) {
+            alert("Error sending question. Please try again later.");
+            console.error("EmailJS Error:", error);
+        });
+    }
+</script>
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
